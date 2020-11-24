@@ -1,0 +1,50 @@
+﻿@model List<EmpleadoEntityMVC.Models.VistaModelo.ListaEmpleado>
+@{
+    ViewBag.Title = "Lista De Empleado";
+}
+ 
+
+<h2>@ViewBag.Title</h2>
+<div class"row">
+    <div class="row" style="text-align:right;padding:5px">
+        <a href="~/Empleado/Nuevo" class="btn btn-primary">Nuevo</a>
+      
+    </div>
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Salario</th>
+                <th>Fecha de Ingreso</th>
+            </tr>
+            @foreach (var oElmento in Model)
+            {
+                <tr>
+                    <td>@oElmento.codigo</td>
+                    <td>@oElmento.nombre</td>
+                    <td>@oElmento.salario</td>
+                    <td>@oElmento.fechaingreso</td>
+                    <td>
+                        <a class="btn btn-default" href="~/Empleado/Editar/@oElmento.codigo">Editar</a>
+                        <a class="btn btn-danger " href="~/Empleado/Eliminar/@oElmento.codigo" OnClick="return confirm('¿Desea eliminar el registro codigo ' +@oElmento.codigo + '?')">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+
+</div>
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@TempData["Message"]");
+
+        };
+
+    </script>
+}
+

@@ -1,0 +1,51 @@
+﻿@model EmpleadoEntityMVC.Models.VistaModelo.EmpleadoVistaModelo
+@{
+    ViewBag.Title = "Agregar Empleado";
+}
+@if (ViewData["Success"] != null)
+{
+    <div id="successMessage">
+        @ViewData["Success"]
+    </div>
+    }
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Nuevo", "Empleado", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <label id="labelnombre">Nombre</label>  
+            @Html.TextBoxFor(d => d.nombre, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.nombre, null, new { @class = "red" })
+        </div>
+        <div>
+            <label id="labelsalario">Salario</label>
+            @Html.TextBoxFor(d => d.salario, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.salario, null, new { @class = "red" })
+        </div>
+        <div>
+            <label id="labelfechaingreso">Fecha Ingreso</label><br />
+            @Html.EditorFor(d => d.fechaingreso, "", new { @class = "form-control" })<br />
+            @Html.ValidationMessageFor(d => d.fechaingreso, null, new { @class = "red" })
+        </div>
+
+
+    </div>
+    <div class="row" style="text-align:right;padding:5px">
+        <input value="Guardar" class="btn btn-primary" type="submit" />
+    </div>
+    @if (TempData["Message"] != null)
+    {
+        <script type="text/javascript">
+           
+            window.onload = function () {
+                alert(TempData["Message"]);
+               
+            };
+        </script>
+    }
+
+</div>
+}
